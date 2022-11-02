@@ -72,6 +72,9 @@ python3 apps/py/test.py
 
 ```
 
+Результат: {'main': 362, 'cdn': 638} 63.800000 %
+
+
 ## изменение %, cdn_host установка представлено в api (по умолчанию 30%)
 [https://documenter.getpostman.com/view/23758491/2s8YRgqErM](https://documenter.getpostman.com/view/23758491/2s8YRgqErM)
 
@@ -131,10 +134,6 @@ py3.11/sanic - Requests per second:    10070.64 [#/sec] (mean)
 
 
 Версию python можно изменить в ```dockers/python/Dockerfile```
-
-
-
-Результат: {'main': 362, 'cdn': 638} 63.800000 %
 
 
 ## Очистка БД
