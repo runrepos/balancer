@@ -1,0 +1,15 @@
+asyncio
+sanic
+aiohttp
+uvicorn
+
+sqlalchemy[asyncio]
+pydantic_sqlalchemy
+
+asyncmy
+
+pytz
+requests
+httpx
+
+

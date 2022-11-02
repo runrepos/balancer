@@ -1,0 +1,75 @@
+version: '3'
+services:
+
+  balancer_mysql:
+    container_name: balancer_mysql
+    #image: mysql:5.7.22
+    #image: cytopia/mariadb-5.5
+    #image: mariadb:5.5
+    #image: percona:5.7-centos
+    image: percona:5.7
+    restart: unless-stopped
+    tty: true
+    env_file:
+      - .env
+    environment:
+      MYSQL_DATABASE: test
+      #MYSQL_ROOT_PASSWORD: mysqlpass
+      #UPLOAD_LIMIT: 300M
+      #SERVICE_TAGS: dev
+      #SERVICE_NAME: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql:/var/lib/mysql/
+      - "./apps/migrations/01_create_initial_tables.up.sql:/docker-entrypoint-initdb.d/1.sql"
+      #- ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+  # balancer_phpmyadmin:
+  #   container_name: balancer_phpmyadmin
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #     PMA_HOST: balancer_mysql
+  #     #PMA_HOST: 0.0.0.0
+  #     PMA_PORT: 3306
+  #     UPLOAD_LIMIT: 300M
+  #   depends_on:
+  #      - balancer_mysql
+  #   ports:
+  #     - 7760:80
+  #   networks:
+  #     - app-network
+  #   # network_mode: "host"
+
+
+#   balancer_redis:
+#     container_name: balancer_redis
+#     image: "redis:alpine"
+#     #ports:
+#     #- "6381:6379"
+#     env_file:
+#       - ../.env
+#     command: sh -c 'echo "$$REDIS_PASSWORD" && redis-server --requirepass "$$REDIS_PASSWORD"'
+#     #command: 
+#     volumes:
+#      - ../.env:/var/lib/redis/.env
+#      - redis:/var/lib/redis
+# #      -./dockers/redis/redis.conf:/usr/local/etc/redis/redis.conf
+#     #env_file: ../variables.env
+#     networks:
+#       - app-network   
+
+networks:
+  app-network:
+    driver: bridge
+    #external: true
+  # external_service_network:
+  #   external:
+  #     name: tags_app-network
+volumes:
+  mysql:
+    driver: local
+#  redis:
+#     driver: local

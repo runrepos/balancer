@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "1226e741-c591-4701-9785-8d7dd98ac16f",
+		"name": "more_balancer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23758491"
+	},
+	"item": [
+		{
+			"name": "edit_settings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tag\": \"VIDEO:CDN\",\n\t\"value\": [{\n            \"host\": \"http://localhost:3200\",\n            \"percent\": 0.4\n\t\t\t }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3200/api/edit_settings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3200",
+					"path": [
+						"api",
+						"edit_settings"
+					]
+				},
+				"description": "## настройки сохраняются по тегу \"VIDEO:CDN\"\n\n```\n{\n    \"tag\": \"VIDEO:CDN\",\n    \"value\": [{\n            \"host\": \"http://localhost:3200\",\n            \"percent\": 0.3\n             }]\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "get_settings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3200/api/get_settings",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3200",
+					"path": [
+						"api",
+						"get_settings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "redirect",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

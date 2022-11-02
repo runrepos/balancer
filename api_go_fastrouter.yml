@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+
+  balancer_fastrouter_api:
+    container_name: balancer_fastrouter_api
+    restart: unless-stopped
+    build:
+      context: ./apps/otherlangs/go/fastrouter/superapp
+      args:
+        - GOFILE=cmd/
+      dockerfile: ../../../../../dockers/go/Dockerfile
+    env_file:
+      - ./.env
+      # настройки приложения
+      - ./apps/.env
+    command: /bin/sh -c "go build -mod=readonly -o bin/server ./cmd/ && ./bin/server"
+    ports:
+      - "3200:3000"
+    volumes:
+      #- ./pkg:/go/pkg/
+      - ./apps/otherlangs/go/fastrouter/superapp:/superapp
+    # depends_on:
+    #   - balancer_redis
+    #environment:
+    #   - PORT=5005
+    networks:
+      - app-network
+    #network_mode: host
+
+networks:
+  app-network:
+    driver: bridge
+  # logger-network:
+  #   external:
+  #     name: external_app-network
+
+# volumes:
+  # clickhouse:
+  #   driver: local
+
