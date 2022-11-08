@@ -1,4 +1,4 @@
-#### сделано на 5х фреймворках - Sanic, aiohttp, fastapi, fiber (go), fastrouter (go) 
+#### сделано на 5-8х фреймворках - Sanic, aiohttp, fastapi, fiber (go), fastrouter (go) 
 
  + sqlalchemy, gorm (go)
 
@@ -74,7 +74,7 @@ docker-compose -f api_rust_warp.yml up
 ### (прототип, без бд) Rust rocket - 68000-81579.94rps
 ```
 
-docker-compose -f api_rust_warp.yml up
+docker-compose -f api_rust_rocket.yml up
 
 ```
 
