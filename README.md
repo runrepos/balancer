@@ -43,13 +43,6 @@ docker-compose -f api_aiohttp.yml up
 
 ```
 
-### Rust warp - 68000-81579.94rps
-```
-
-docker-compose -f api_rust_warp.yml up
-
-```
-
 ### Go fastrouter - 38000-46000.77 rps
 ```
 
@@ -61,6 +54,20 @@ docker-compose -f api_go_fastrouter.yml up
 ```
 
 docker-compose -f api_fastapi.yml up
+
+```
+
+### Rust actix - 95000-108000rps
+```
+
+docker-compose -f api_rust_actix.yml up
+
+```
+
+### Rust warp - 68000-81579.94rps
+```
+
+docker-compose -f api_rust_warp.yml up
 
 ```
 
@@ -113,6 +120,8 @@ docker run --network host --rm jordi/ab -k -c 100 -n 10000 http://0.0.0.0:3200/?
 
 (без принтов)
 
+
+(прототип, без бд) rust/actix - (108314.21)
 
 (прототип, без бд) rust/warp - (68000-81579.94)
 
