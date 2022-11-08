@@ -6,7 +6,7 @@ services:
     container_name: balancer_warp_api
     restart: unless-stopped
     build:
-      context: ./apps/otherlangs/rust/warp-app
+      context: ./apps/otherlangs/rust/warp
       #args:
       #  - GOFILE=/
       dockerfile: ../../../../dockers/rust/Dockerfile
@@ -19,7 +19,9 @@ services:
     #command: /bin/sh -c "cargo run"
     ports:
       - "3200:3200"
-    #volumes:
+    volumes:
+      - ./apps/otherlangs/rust/warp-app/src:/usr/src/superapp/src
+      - ./apps/otherlangs/rust/warp-app/Cargo.toml:/usr/src/superapp/Cargo.toml
       #- ./pkg:/go/pkg/
       #- ./apps/otherlangs/rust/warp-app:/usr/src/superapp
     # depends_on:

@@ -2,11 +2,11 @@ version: '3.1'
 
 services:
 
-  balancer_actix_api:
-    container_name: balancer_actix_api
+  balancer_rocket_api:
+    container_name: balancer_rocket_api
     restart: unless-stopped
     build:
-      context: ./apps/otherlangs/rust/actix-app
+      context: ./apps/otherlangs/rust/rocket-app
       #args:
       #  - GOFILE=/
       dockerfile: ../../../../dockers/rust/Dockerfile
@@ -20,10 +20,10 @@ services:
     ports:
       - "3200:3200"
     volumes:
-      - ./apps/otherlangs/rust/actix-app/src:/usr/src/superapp/src
-      - ./apps/otherlangs/rust/actix-app/Cargo.toml:/usr/src/superapp/Cargo.toml
       #- ./pkg:/go/pkg/
-      #- ./apps/otherlangs/rust/warp-app:/usr/src/superapp
+      - ./apps/otherlangs/rust/rocket-app/src:/usr/src/superapp/src
+      - ./apps/otherlangs/rust/rocket-app/Cargo.toml:/usr/src/superapp/Cargo.toml
+      - ./apps/otherlangs/rust/rocket-app/Rocket.toml:/usr/src/superapp/Rocket.toml
     # depends_on:
     #   - balancer_redis
     #environment:

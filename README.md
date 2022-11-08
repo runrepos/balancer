@@ -57,14 +57,21 @@ docker-compose -f api_fastapi.yml up
 
 ```
 
-### Rust actix - 95000-108000rps
+### (прототип, без бд) Rust actix - 95000-108000rps
 ```
 
 docker-compose -f api_rust_actix.yml up
 
 ```
 
-### Rust warp - 68000-81579.94rps
+### (прототип, без бд)Rust warp - 68000-81579.94rps
+```
+
+docker-compose -f api_rust_warp.yml up
+
+```
+
+### (прототип, без бд) Rust rocket - 68000-81579.94rps
 ```
 
 docker-compose -f api_rust_warp.yml up
@@ -124,6 +131,8 @@ docker run --network host --rm jordi/ab -k -c 100 -n 10000 http://0.0.0.0:3200/?
 (прототип, без бд) rust/actix - (108314.21)
 
 (прототип, без бд) rust/warp - (68000-81579.94)
+
+(прототип, без бд) rust/rocket - (55730 - 67000)
 
 📌 go/fiber Requests per second:    45000 - 56065.77 (56000)
 

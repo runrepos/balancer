@@ -1,0 +1,11 @@
+[global]
+address = "0.0.0.0"
+port = 3200
+
+[development]
+address = "0.0.0.0"
+port = 3200
+
+[production]
+address = "0.0.0.0"
+port = 3200

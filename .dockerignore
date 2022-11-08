@@ -1,0 +1,9 @@
+**/venv
+**/target
+**/__pycache__
+**/dbdata
+**/_.env**
+**/.globenv**
+**/dumps
+**/.~lock.**
+**/.idea**
