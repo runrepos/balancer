@@ -43,6 +43,13 @@ docker-compose -f api_aiohttp.yml up
 
 ```
 
+### Rust warp - 68000-81579.94rps
+```
+
+docker-compose -f api_rust_warp.yml up
+
+```
+
 ### Go fastrouter - 38000-46000.77 rps
 ```
 
@@ -107,6 +114,8 @@ docker run --network host --rm jordi/ab -k -c 100 -n 10000 http://0.0.0.0:3200/?
 (без принтов)
 
 
+(прототип, без бд) rust/warp - (68000-81579.94)
+
 📌 go/fiber Requests per second:    45000 - 56065.77 (56000)
 
 📌 (нет Head метода -) go/fastrouter      70000-98539 (46862)
@@ -129,6 +138,17 @@ docker run --network host --rm jordi/ab -k -c 100 -n 10000 http://0.0.0.0:3200/?
 py3.10/sanic - Requests per second:    9229.51 [#/sec] (mean)
 
 py3.11/sanic - Requests per second:    10070.64 [#/sec] (mean)
+
+
+с репликами
+
+swarm (3-4) sanic - 26877.76 (=233%)
+swarm (2) sanic - 25000
+swarm (6) sanic - 21000
+swarm (6) aiohttp - 17543.09 (=341%) (65% от sanic)
+swarm (6) aiohttp - 
+swarm (3) fastapi - 6133 (=185%) (22% от sanic)
+swarm (6) fastapi - 5131
 
 
 

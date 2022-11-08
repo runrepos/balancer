@@ -1,0 +1,43 @@
+version: '3.1'
+
+services:
+
+  balancer_warp_api:
+    container_name: balancer_warp_api
+    restart: unless-stopped
+    build:
+      context: ./apps/otherlangs/rust/warp-app
+      #args:
+      #  - GOFILE=/
+      dockerfile: ../../../../dockers/rust/Dockerfile
+    env_file:
+      - ./.env
+      # настройки приложения
+      - ./apps/.env
+    command: /bin/sh -c "cargo build --release && target/release/superapp"
+    #command: /bin/sh -c "target/release/superapp"
+    #command: /bin/sh -c "cargo run"
+    ports:
+      - "3200:3200"
+    #volumes:
+      #- ./pkg:/go/pkg/
+      #- ./apps/otherlangs/rust/warp-app:/usr/src/superapp
+    # depends_on:
+    #   - balancer_redis
+    #environment:
+    #   - PORT=5005
+    networks:
+      - app-network
+    #network_mode: host
+
+networks:
+  app-network:
+    driver: bridge
+  # logger-network:
+  #   external:
+  #     name: external_app-network
+
+# volumes:
+  # clickhouse:
+  #   driver: local
+

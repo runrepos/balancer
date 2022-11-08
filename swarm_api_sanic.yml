@@ -1,0 +1,51 @@
+version: '3'
+services:
+
+# api
+  test_sanic_api:
+    image: swarm_sanic_api
+    build:
+      context: ./apps/py
+      dockerfile: ../../dockers/python/Dockerfile_swarm_sanic
+    # env_file:
+    #   - .env
+    #   - ./apps/.env
+    #command: /bin/bash -c "python -m pip install -r /app/requirements.txt --no-cache-dir && python api.py"
+    #command: /bin/bash -c "python api_sanic/api.py"
+    restart: unless-stopped
+    ports:
+      - "3200:3000"
+#    depends_on:
+#      - mysql
+#      - postgres
+    # working_dir: /app
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "1"
+    volumes:
+      - ./apps/py:/app
+    # networks:
+    #   - app-network
+    #   # - extarnal-service_network
+    deploy:
+     replicas: 4
+     restart_policy:
+       max_attempts: 4
+       condition: on-failure       
+     update_config:
+       parallelism: 4
+       delay: 10s
+
+
+# networks:
+#   app-network:
+#     driver: bridge
+    #external: true
+  # extarnal-service_network:
+  #   external:
+  #     name: tags_app-network
+# volumes:
+#   dbdata:
+#     driver: local
